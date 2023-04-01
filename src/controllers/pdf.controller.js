@@ -18,9 +18,7 @@ const generatePDF = async (req, res) => {
     await page.goto(req.headers.referer);
     const element = await page.waitForSelector('#target');
     const currentTime = new Date().getTime()
-    const screenshot = await element.screenshot({
-      path: `tmp/uplatnica-${currentTime}.png`
-    });
+    const screenshot = await element.screenshot();
     await page.setContent(`
     <!DOCTYPE html>
     <html>
@@ -44,14 +42,18 @@ const generatePDF = async (req, res) => {
         </body>
     </html>
     `)
+    console.log('before creating pdf')
     const pdf = await page.pdf({
       path: `tmp/uplatnica-${currentTime}.pdf`,
       format: 'A4'
     })
+    console.log('after creating pdf')
     res.download(`tmp/uplatnica-${currentTime}.pdf`)
   }
   catch (error) {
-    res.send(error)
+    res.json({
+      message: 'Something went wrong'
+    })
   }
   finally {
     await browser.close();
