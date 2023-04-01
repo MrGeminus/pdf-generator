@@ -1,11 +1,10 @@
 import puppeteer from 'puppeteer';
 
 const generatePDF = async (req, res) => {
-  const targetUrl = url.format({ protocol: req.protocol, host: req.get('host'), pathname: req.originalUrl });
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 });
-  await page.goto(targetUrl);
+  await page.goto(req.headers.referer);
   const element = await page.waitForSelector('#target');
   const currentTime = new Date().getTime()
   const screenshot = await element.screenshot({
