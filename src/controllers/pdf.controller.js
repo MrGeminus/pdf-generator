@@ -42,16 +42,14 @@ const generatePDF = async (req, res) => {
         </body>
     </html>
     `)
-    console.log('before creating pdf')
     const pdf = await page.pdf({
-      path: `tmp/uplatnica-${currentTime}.pdf`,
       format: 'A4'
     })
-    console.log('after creating pdf')
-    res.download(`tmp/uplatnica-${currentTime}.pdf`)
+    res.contentType("application/pdf");
+    res.send(pdf)
   }
   catch (error) {
-    res.json({
+    res.status(500).json({
       message: 'Something went wrong'
     })
   }
