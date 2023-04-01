@@ -17,7 +17,6 @@ const generatePDF = async (req, res) => {
     await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 });
     await page.goto(req.headers.referer);
     const element = await page.waitForSelector('#target');
-    const currentTime = new Date().getTime()
     const screenshot = await element.screenshot();
     await page.setContent(`
     <!DOCTYPE html>
@@ -50,7 +49,7 @@ const generatePDF = async (req, res) => {
   }
   catch (error) {
     res.status(500).json({
-      message: 'Something went wrong'
+      message: error.message
     })
   }
   finally {
