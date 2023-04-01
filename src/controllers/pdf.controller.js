@@ -8,7 +8,7 @@ const generatePDF = async (req, res) => {
   const element = await page.waitForSelector('#target');
   const currentTime = new Date().getTime()
   const screenshot = await element.screenshot({
-    path: `public/uplatnica-${currentTime}.png`
+    path: `tmp/uplatnica-${currentTime}.png`
   });
   await page.setContent(`
     <!DOCTYPE html>
@@ -34,11 +34,11 @@ const generatePDF = async (req, res) => {
     </html>
     `)
   const pdf = await page.pdf({
-    path: `public/uplatnica-${currentTime}.pdf`,
+    path: `tmp/uplatnica-${currentTime}.pdf`,
     format: 'A4'
   })
   await browser.close();
-  return res.download(`public/uplatnica-${currentTime}.pdf`)
+  return res.download(`tmp/uplatnica-${currentTime}.pdf`)
 }
 
 export default generatePDF
