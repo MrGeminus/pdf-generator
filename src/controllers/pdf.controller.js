@@ -45,6 +45,7 @@ const generatePDF = async (req, res) => {
       format: 'A4'
     })
     res.contentType("application/pdf");
+    res.set("Content-Disposition", "attachment; filename=uplatnica.pdf")
     res.send(pdf)
   }
   catch (error) {
