@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"scripts": {
-		"pre:start": "npm i",
+		"pre:start": "node node_modules/puppeteer/install.js",
 		"start": "node src/index.js",
 		"develop": "nodemon src/index.js"
 	},
