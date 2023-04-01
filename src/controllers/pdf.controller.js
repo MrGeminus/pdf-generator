@@ -50,8 +50,8 @@ const generatePDF = async (req, res) => {
     })
     res.download(`tmp/uplatnica-${currentTime}.pdf`)
   }
-  catch (e) {
-    res.send('Something went wrong')
+  catch (error) {
+    res.send(error)
   }
   finally {
     await browser.close();
