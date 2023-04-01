@@ -1,7 +1,7 @@
 {
 	"type": "module",
 	"scripts": {
-		"postinstall": "node node_modules/puppeteer/install.js",
+		"postinstall": "npm install puppeteer",
 		"start": "node src/index.js",
 		"develop": "nodemon src/index.js"
 	},
