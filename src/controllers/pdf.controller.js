@@ -3,10 +3,10 @@ import puppeteer from 'puppeteer';
 const generatePDF = async (req, res) => {
   const browser = await puppeteer.launch({
     args: [
-      "--disable-steuid-sandbox",
+      "--disable-setuid-sandbox",
       "--no-sandbox",
       "--single-process",
-      "--no-zygote"
+      "--no-zygote",
     ],
     executablePath: process.env.NODE.ENV === "production"
       ? process.env.PUPPETEER_EXECUTABLE_PATH

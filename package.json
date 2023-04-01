@@ -1,8 +1,8 @@
 {
 	"type": "module",
 	"scripts": {
-		"start": "node src/index.js",
-		"develop": "nodemon src/index.js"
+		"start": "node src/index",
+		"develop": "nodemon src/index"
 	},
 	"dependencies": {
 		"dotenv": "^16.0.3",
